@@ -48,11 +48,13 @@ for pulsar in targets.dat:
             beamno = os.listdir(observationpath)
             beamnopath = os.path.join(observationpath, beamno)
             #Move into the directory for the beam number
-            os.chdir(beamno)
+            os.chdir(beamnopath)
 
             #Move into the frequency directory
             freq = os.listdir(beamnopath)
             freqpath = os.path.join(beamnopath, freq)
+            #Move into the directory for the frequency
+            os.chdir(freqpath)
 
             #Set up file count system
             filecount = len(glob.glob1(freqpath, "*.ar"))
