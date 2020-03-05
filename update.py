@@ -75,14 +75,4 @@ for pulsar in targets.dat:
                 for archive in os.listdir(freqpath):
                     os.symlink(os.path.join(freqpath, archive), mkdirpath2)
                 #Adding a .linked file to identify if this process needs to be done
-                Path(mkdirpath2/.linked).touch()
-                
-
-            
-
-
-
-
-
-
-
+                Path('mkdirpath2/.linked').touch()
