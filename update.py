@@ -35,19 +35,18 @@ for pulsar in targets:
     os.chdir(timing)
     print('In this directory',os.getcwd())
     #In MEERTIME timing directory
-    for pulsar in os.listdir(timing):
-        pulsarpath = os.path.join(timing, pulsar)
+    pulsarpath = os.path.join(timing, pulsar)
 
-        #Move into the pulsar directory with command below
-        os.chdir(pulsarpath)
-        #In individual pulsar directory
-        print('In this directory', os.getcwd())
-        #observationpath = os.chdir(chdirpath3)
+    #Move into the pulsar directory with command below
+    os.chdir(pulsarpath)
+    #In individual pulsar directory
+    print('In this directory', os.getcwd())
+    #observationpath = os.chdir(chdirpath3)
 
-        ##input here a way to set the beamno? Required?##
+    ##input here a way to set the beamno? Required?##
 
-        #Create a for loop for the observations and roll through these
-        for obs in os.listdir(pulsarpath):
+    #Create a for loop for the observations and roll through these
+    for obs in os.listdir(pulsarpath):
         observationpath = os.path.join(pulsarpath,obs)
         #Move into the direcotry for the individual observation
         os.chdir(observationpath)
@@ -56,7 +55,7 @@ for pulsar in targets:
 
         #Move into the beamno directory
         beamno = os.listdir(observationpath)[0]
-        beamnopath = os.path.join(observationpath,     beamno )
+        beamnopath = os.path.join(observationpath, beamno)
         #Move into the directory for the beam number
         os.chdir(beamnopath)
         print('In this directory', os.getcwd())
@@ -79,12 +78,11 @@ for pulsar in targets:
         mkdirpath2 = os.path.join(mkdirpath1, obs, beamno, freq)
         os.makedirs(mkdirpath2)
 
-        #Make an if path to detect if there is already a .linked file present
+               #Make an if path to detect if there is already a .linked file present
         if glob.glob('*.linked'):
             print('already copied/linked %s archives for %s', filecount, obs)
         else:
-            #Crating soft links to the MEERTIME directory from MATTIME
+            #Creating soft links to the MEERTIME directory from MATTIME
             for archive in os.listdir(freqpath):
-                os.symlink(os.path.join(freqpath, archive), mkdirpath2)
-            #Adding a .linked file to identify if this process needs to be done
-            Path('mkdirpath2/.linked').touch()
+                os.symlink(os.path.join(freqpath, archive), os.path.join(mkdirpath2, archive))
+            checkfile = os.path.join(mkdirpath2, ".linked")
