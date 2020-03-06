@@ -22,6 +22,8 @@ for pulsar in targets:
     print({pulsar})
     #Make a directory for the data under MATTIME
     mkdirpath1 = os.path.join(chdirpath1, pulsar)
+    #This is just to get rid of the problem where it detects that the directory already exists
+    
     try:
         os.mkdir(mkdirpath1)
     except OSError as exc:
@@ -34,16 +36,11 @@ for pulsar in targets:
     #Move into the MEERTIME timing directory
     os.chdir(timing)
     print('In this directory',os.getcwd())
-    #In MEERTIME timing directory
     pulsarpath = os.path.join(timing, pulsar)
 
     #Move into the pulsar directory with command below
     os.chdir(pulsarpath)
-    #In individual pulsar directory
     print('In this directory', os.getcwd())
-    #observationpath = os.chdir(chdirpath3)
-
-    ##input here a way to set the beamno? Required?##
 
     #Create a for loop for the observations and roll through these
     for obs in os.listdir(pulsarpath):
@@ -51,19 +48,16 @@ for pulsar in targets:
         #Move into the direcotry for the individual observation
         os.chdir(observationpath)
         print('In this directory', os.getcwd())
-        #In individual pulsar directory
 
         #Move into the beamno directory
         beamno = os.listdir(observationpath)[0]
         beamnopath = os.path.join(observationpath, beamno)
-        #Move into the directory for the beam number
         os.chdir(beamnopath)
         print('In this directory', os.getcwd())
 
         #Move into the frequency directory
         freq = os.listdir(beamnopath)[0]
         freqpath = os.path.join(beamnopath, freq)
-        #Move into the directory for the frequency
         os.chdir(freqpath)
         print('In this directory', os.getcwd())
 
@@ -77,8 +71,8 @@ for pulsar in targets:
         #Make a directory in MATTIME based on the information in the MEERTIME directory traced above
         mkdirpath2 = os.path.join(mkdirpath1, obs, beamno, freq)
         os.makedirs(mkdirpath2)
-
-               #Make an if path to detect if there is already a .linked file present
+        
+        #Make an if path to detect if there is already a .linked file present
         if glob.glob('*.linked'):
             print('already copied/linked %s archives for %s', filecount, obs)
         else:
