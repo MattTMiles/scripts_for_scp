@@ -73,6 +73,8 @@ def clean(pulsar,obs):
     for files in os.listdir(os.getcwd()):
         if files.ednswith(".ar"):
             os.system("paz -r -e r "+files)
+            #Removes any files that still have a .ar extension attached
+            os.system("rm"+files)
     #Leaves an artefact in the file showing that the observation has been cleaned
     checkfile = freq_dir + "/" + "obs.cleaned"
     with open(checkfile,"w") as x:
