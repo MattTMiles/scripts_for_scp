@@ -1,0 +1,1 @@
+def decimate(pulsar, obs)

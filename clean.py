@@ -40,27 +40,27 @@ for pulsar in targets:
                 #This command will call paz on the observation
                 os.system("paz -r -e r "+files)
 
-""" This is the same code as above just written as a function
- so that arguments can be passed into it """
+""" This is the same code as above just written as a function so that 
+individual arguments can be passed into it rather than looping over all """
 
-def clean(PSRID,OBS):
+def clean(pulsar,obs):
     MainDir = "/fred/oz002/users/mmiles/timing/"
 
     os.chdir(MainDir)
 
-    PSRID = input("Input the pulsar to be investigated:")
-    OBSID = input("Input the observation to be investigated:")
+    pulsar = input("Input the pulsar to be investigated:")
+    obs = input("Input the observation to be investigated:")
 
     #Change to requested pulsar directory
-    PSRID_dir = os.path.join(MainDir,PSRID)
-    os.chdir(PSRID_dir)
+    pulsar_dir = os.path.join(MainDir,pulsar)
+    os.chdir(pulsar_dir)
 
     #Change to requested observation directory
-    OBSID_dir = os.path.join(PSRID_dir, OBSID)
+    obs_dir = os.path.join(pulsar_dir, obs)
 
     #Move through beam number directory
-    beamno = os.listdir(OBSID_dir)[0]
-    beamno_dir = os.path.join(OBSID_dir, beamno)
+    beamno = os.listdir(obs_dir)[0]
+    beamno_dir = os.path.join(obs_dir, beamno)
     os.chdir(beamno_dir)
 
     #Move through frequency directory
