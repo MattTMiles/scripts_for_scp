@@ -83,13 +83,13 @@ for pulsar in targets:
                 raise
             pass
         #Make an if path to detect if there is already a .linked file present
-        if glob.glob('done.txt'):
+        if glob.glob('obs.update'):
             print('already copied/linked %s archives for %s' %(filecount, obs))
         else:
             #Creating soft links to the MEERTIME directory from MATTIME
             for archive in os.listdir(freqpath):
                 os.symlink(os.path.join(freqpath, archive), os.path.join(mkdirpath2, archive))
-            checkfile = mkdirpath2 + "/" + "done.txt"
+            checkfile = mkdirpath2 + "/" + "obs.update"
             with open(checkfile,"w") as x:
                 x.write("this process has already been done")
             #checkfile.write("This process has already been done")
