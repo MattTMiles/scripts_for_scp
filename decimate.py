@@ -48,3 +48,7 @@ def decimate(pulsar, obs):
 
         #Creates a version that is integrated in time and given the extension T
         os.system("pam -T"+freq_dir+".pf32 -e T")
+
+        checkfile = freq_dir + "/" + "obs.decimated"
+        with open(checkfile,"w") as x:
+            x.write("this process has already been done")

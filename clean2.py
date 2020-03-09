@@ -8,8 +8,8 @@ def clean(pulsar,obs):
 
     os.chdir(MainDir)
 
-    pulsar = input("Input the pulsar to be investigated:")
-    obs = input("Input the observation to be investigated:")
+    #pulsar = input("Input the pulsar to be investigated:")
+    #obs = input("Input the observation to be investigated:")
 
     #Change to requested pulsar directory
     pulsar_dir = os.path.join(MainDir,pulsar)
@@ -31,7 +31,7 @@ def clean(pulsar,obs):
     #This uses paz on each subintergration in the directory, and rewrites them with the extension .r
 
     for files in os.listdir(os.getcwd()):
-        if files.ednswith(".ar"):
+        if files.endswith(".ar"):
             os.system("paz -r -e r "+files)
             #Removes any files that still have a .ar extension attached
             os.system("rm"+files)

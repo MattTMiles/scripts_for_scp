@@ -39,3 +39,7 @@ for pulsar in targets:
             if files.endswith(".ar"):
                 #This command will call paz on the observation
                 os.system("paz -r -e r "+files)
+
+        checkfile = os.path.join(curdir2,contents2) + "/" + "obs.cleaned"
+        with open(checkfile,"w") as x:
+            x.write("this process has already been done")
