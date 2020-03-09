@@ -24,7 +24,6 @@ def decimate(pulsar, obs):
     freq = os.listdir(beamno_dir)[0]
     freq_dir = os.path.join(beamno_dir, freq)
     os.chdir(freq_dir)
-
     #This uses paz on each subintergration in the directory, and rewrites them with the extension .r
 
     for files in os.listdir(freq_dir):
@@ -35,20 +34,20 @@ def decimate(pulsar, obs):
             #Removes any files left with the .r extension
             os.system("rm "+files)
         
-        if files.startswith("2") and files.endswith(".pf32"):
-            
-            #Below joins all 8 second periods into a single file
-            os.system("psradd -o"+freq_dir+".pf32 "+files)
+            if files.startswith("2") and files.endswith(".pf32"):
+                
+                #Below joins all 8 second periods into a single file
+                os.system("psradd -o"+freq_dir+".pf32 "+files)
 
-            #Removes the files that started with 2 and end with .pf32
-            os.system("rm "+files)
-
-        #Creates a version that is integrated in frequency and given the extension F
-        os.system("pam -F "+freq_dir+".pf32 -e F")
-
-        #Creates a version that is integrated in time and given the extension T
-        os.system("pam -T "+freq_dir+".pf32 -e T")
+                #Removes the files that started with 2 and end with .pf32
+                os.system("rm "+files)
 
         checkfile = freq_dir + "/" + "obs.decimated"
         with open(checkfile,"w") as x:
             x.write("this process has already been done")
+    
+    #Creates a version that is integrated in frequency and given the extension F
+    os.system("pam -F "+freq_dir+".pf32 -e F")
+
+    #Creates a version that is integrated in time and given the extension T
+    os.system("pam -T "+freq_dir+".pf32 -e T")
