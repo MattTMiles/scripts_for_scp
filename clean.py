@@ -8,9 +8,6 @@ def clean(pulsar,obs):
 
     os.chdir(MainDir)
 
-    #pulsar = input("Input the pulsar to be investigated:")
-    #obs = input("Input the observation to be investigated:")
-
     #Change to requested pulsar directory
     pulsar_dir = os.path.join(MainDir,pulsar)
     os.chdir(pulsar_dir)
