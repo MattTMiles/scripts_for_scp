@@ -33,21 +33,24 @@ def decimate(pulsar, obs):
             
             #Removes any files left with the .r extension
             os.system("rm "+files)
-  
-        if files.startswith("2") and files.endswith(".pf32"):
-            
-            #Below joins all 8 second periods into a single file
-            os.system("psradd -o "+freq_dir+".pf32 "+files)
+              
+        #Below joins all 8 second periods into a single file
+        os.system("psradd -o "+obs_dir+".pf32 2*.pf32")
 
-            #Removes the files that started with 2 and end with .pf32
-            os.system("rm "+files)
+    #Specifying which files can be removed
+    if files.startswith("2") and files.endswith(".pf32"):
+        #Removes the files that started with 2 and end with .pf32
+        os.system("rm "+files)
 
-        #checkfile = freq_dir + "/" + "obs.decimated"
-        with open(checkfile,"w") as x:
-            x.write("this process has already been done")
+    checkfile = freq_dir + "/" + "obs.decimated"
+    with open(checkfile,"w") as x:
+        x.write("this process has already been done")
     
+    #Change into the pulsar directory to act on the .pf32 file
+    os.chdir(pulsar_dir)
+
     #Creates a version that is integrated in frequency and given the extension F
-    os.system("pam -F "+freq_dir+".pf32 -e F")
+    os.system("pam -F "+obs_dir+".pf32 -e F")
 
     #Creates a version that is integrated in time and given the extension T
-    os.system("pam -T "+freq_dir+".pf32 -e T")
+    os.system("pam -T "+obs_dir+".pf32 -e T")
