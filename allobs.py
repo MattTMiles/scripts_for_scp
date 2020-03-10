@@ -22,7 +22,6 @@ mainDir = "/fred/oz002/users/mmiles/timing"
 
 #Specify which pulsar you want to investigate
 pulsar = input("Input the pulsar that you want to analyse: ")
-
 #First pass script: unsure if this will work
 
 #Call the clean.py function on the pulsar and all of its observations
