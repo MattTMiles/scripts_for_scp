@@ -28,9 +28,3 @@ for pulsar in os.listdir(mainDir):
 for pulsar in os.listdir(mainDir):
     for obs in os.listdir(os.path.join(mainDir, pulsar)):
         decimate(pulsar, obs)
-
-
-
-
-        
-
