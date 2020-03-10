@@ -33,16 +33,16 @@ def decimate(pulsar, obs):
             
             #Removes any files left with the .r extension
             os.system("rm "+files)
-        
-            if files.startswith("2") and files.endswith(".pf32"):
-                
-                #Below joins all 8 second periods into a single file
-                os.system("psradd -o"+freq_dir+".pf32 "+files)
+  
+        if files.startswith("2") and files.endswith(".pf32"):
+            
+            #Below joins all 8 second periods into a single file
+            os.system("psradd -o "+freq_dir+".pf32 "+files)
 
-                #Removes the files that started with 2 and end with .pf32
-                os.system("rm "+files)
+            #Removes the files that started with 2 and end with .pf32
+            os.system("rm "+files)
 
-        checkfile = freq_dir + "/" + "obs.decimated"
+        #checkfile = freq_dir + "/" + "obs.decimated"
         with open(checkfile,"w") as x:
             x.write("this process has already been done")
     
