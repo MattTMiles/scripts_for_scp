@@ -6,6 +6,8 @@ relevant plots to them"""
     #pav -Df filename.T -g filename.D.png/png
     #pav -Gd filename.T -g filename.G.png/png
 
+import os
+
 mainDir = "/fred/oz002/users/mmiles/timing"
 
 pulsar = input("Input the pulsar you want to make plots for:")
