@@ -5,8 +5,8 @@ def decimate(pulsar, obs):
 
     os.chdir(MainDir)
 
-    #pulsar = input("Input the pulsar to be investigated:")
-    #obs = input("Input the observation to be investigated:")
+#    pulsar = input("Input the pulsar to be investigated:")
+#    obs = input("Input the observation to be investigated:")
 
     #Change to requested pulsar directory
     pulsar_dir = os.path.join(MainDir,pulsar)
@@ -24,29 +24,29 @@ def decimate(pulsar, obs):
     freq = os.listdir(beamno_dir)[0]
     freq_dir = os.path.join(beamno_dir, freq)
     os.chdir(freq_dir)
-    #This uses paz on each subintergration in the directory, and rewrites them with the extension .r
 
     for files in os.listdir(freq_dir):
         if files.endswith(".r"):
             #p scrunches and f scrunches into 32 bins, then changes the extension to pf32
             os.system("pam -p -f 32 -e pf32 "+files)
-            
+
             #Removes any files left with the .r extension
             os.system("rm "+files)
-              
-        #Below joins all 8 second periods into a single file
-        os.system("psradd -o "+obs_dir+".pf32 2*.pf32")
 
-    #Specifying which files can be removed
-    if files.startswith("2") and files.endswith(".pf32"):
-        #Removes the files that started with 2 and end with .pf32
-        os.system("rm "+files)
+        #if files.endswith(".pf32"):
+            #Below joins all 8 second periods into a single file
+        os.system("psradd -o "+obs_dir+".pf32 *.pf32")
+        #os.system("rm "+files)
+        #Removes all files that begin with 2 and end with .pf32
+        #if files.endswith(".pf32"):
+            #Removes the files that started with 2 and end with .pf32
 
+#        os.system("rm 2*.pf32")
     checkfile = freq_dir + "/" + "obs.decimated"
     with open(checkfile,"w") as x:
         x.write("this process has already been done")
-    
-    #Change into the pulsar directory to act on the .pf32 file
+
+    #Change int the pulsar directory to act on the .pf32 file
     os.chdir(pulsar_dir)
 
     #Creates a version that is integrated in frequency and given the extension F
