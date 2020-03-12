@@ -9,13 +9,42 @@
 //
 // Pretty much just that, maybe add some interface stuff later - learn javascript
 
-import fs from 'fs';
-
+const fs =require('fs')
 const dir = '~/pulsars/';
 
-fs.readdir(dir, (err, files) => {console.log(files.length);
+//Reads the amount of pulsars in the directory
+fs.readdir(dir, (err, pulsars) => {
+    //Defines a length for the pulsar directory
+    let totalPulsars = pulsars.length; 
 });
 
-var i;
-for (i=0; )
+// Loop through all the pulsars 
+var i,
+    img;
+
+for (i=0; i < totalPulsars; i++) {
+    document.writeln(pulsars)
+
+    //Need a nested for loop in here to pull out the individual observations
+    const dir2 = '~/pulsars'+pulsars
+    fs.readdir(dir2, (err, obs) => {
+    //Defines a length of the number of plots for the pulsar... I hope
+        let pulsarPlots = obs.length;
+    
+    // This should pull out the images and put them in the site
+    //for (var i=0; i < pulsarPlots; i++) {
+    //    document.writeln(obs)
+    //    var image = document.createElement("img")
+    //    image.setAttribute("src", `${dir2}/${i}`)
+
+    //Below this line is an attempt with a different method than above
+        for (var i =0; i <= pulsarPlots; i++) {
+            img = new Image();
+            img.src = dir2+'/'+obs;
+            parent.appendChild(img)
+        }
+    })
+    //}
+}
+
  
