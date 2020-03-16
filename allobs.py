@@ -15,9 +15,12 @@ This is just information on how to tackle the plots - not to do with the code:
 import os
 from clean import clean
 from decimate import decimate
+import sys
 
+
+print("pulsar is:", str(sys.argv[1]))
 #This script will activate clean and decimate on all observations for a single pulsar.
-
+raise a 
 mainDir = "/fred/oz002/users/mmiles/timing"
 
 #Specify which pulsar you want to investigate
