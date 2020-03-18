@@ -9,11 +9,11 @@
 //
 // Pretty much just that, maybe add some interface stuff later - learn javascript
 
-const fs =require('fs')
+import { readdir } from 'fs';
 const dir = '~/pulsars/';
 
 //Reads the amount of pulsars in the directory
-fs.readdir(dir, (err, pulsars) => {
+readdir(dir, (err, pulsars) => {
     //Defines a length for the pulsar directory
     let totalPulsars = pulsars.length; 
 });
@@ -27,7 +27,7 @@ for (i=0; i < totalPulsars; i++) {
 
     //Need a nested for loop in here to pull out the individual observations
     const dir2 = '~/pulsars'+pulsars
-    fs.readdir(dir2, (err, obs) => {
+    readdir(dir2, (err, obs) => {
     //Defines a length of the number of plots for the pulsar... I hope
         let pulsarPlots = obs.length;
     
